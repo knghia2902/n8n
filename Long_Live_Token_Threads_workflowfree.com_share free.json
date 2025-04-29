@@ -1,0 +1,178 @@
+{
+  "name": "Long Live Token Threads",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://graph.threads.net/access_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "grant_type",
+              "value": "th_exchange_token"
+            },
+            {
+              "name": "client_secret",
+              "value": "={{ $json.client_secret }}"
+            },
+            {
+              "name": "access_token",
+              "value": "={{ $json.access_token }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        360,
+        100
+      ],
+      "id": "98f5366f-7e54-498e-8102-3f2ea06ba0a2",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "content": "## Long Live Token Threads\nWorkflow được chia sẻ tại website: [workflowfree.com](https://workflowfree.com) Bạn có thể tìm thấy quy trình tự động đăng bài với tất cả các dạng nội dung trên Threads bằng n8n",
+        "height": 280,
+        "width": 1040
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -180,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "3d476644-1f6c-4733-98b4-7dd5fe4ec794",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        100
+      ],
+      "id": "1ff2e378-ffbe-4925-bd13-aa980c1e0abd",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "410e5aba-9f97-4981-8a82-87a9c3f71a1d",
+              "name": "access_token",
+              "value": "<nhập token ngắn hạn ở đây>",
+              "type": "string"
+            },
+            {
+              "id": "84da1877-8976-425e-b526-bdf21d9f5a3e",
+              "name": "client_secret",
+              "value": "<nhập mã secret của ứng dụng>",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        140,
+        100
+      ],
+      "id": "c34a7286-2369-4ea0-8e54-e384eb6e4a9f",
+      "name": "Nhập thông tin"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "106d574b-0caa-4307-8d4d-5e7ba6b672f1",
+              "name": "body.access_token",
+              "value": "={{ $json.body.access_token }}",
+              "type": "string"
+            },
+            {
+              "id": "5ac291be-7e71-4364-8284-7262d0d545b3",
+              "name": "body.token_type",
+              "value": "={{ $json.body.token_type }}",
+              "type": "string"
+            },
+            {
+              "id": "b46a1bdd-2bd9-4963-9fce-c74a9bd0f12f",
+              "name": "body.expires_in",
+              "value": "={{ $json.body.expires_in }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        580,
+        100
+      ],
+      "id": "5e13e074-5dad-47c2-9a42-4029799b912e",
+      "name": "Lưu thông tin"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Lưu thông tin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Nhập thông tin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Nhập thông tin": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "c4c27d43-204b-419f-acc2-f11862180bff",
+  "meta": {
+    "instanceId": "3d11b8569f10b42bb39ce14e5f0384880ffe1cbeb56e027534758953c47d757d"
+  },
+  "id": "SZQ3mMRxLO3FpdHG",
+  "tags": []
+}
