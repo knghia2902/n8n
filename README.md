@@ -19,4 +19,4 @@ Người dùng cần truy cập vào n8n, tạo mới một workflow và thêm c
 
 Tóm lại, workflow này giúp tự động hóa quy trình lấy và quản lý token dài hạn cho Threads, tiết kiệm thời gian và nâng cao hiệu suất công việc cho người dùng.
 Hình ảnh workflow sau khi cài đặt lên N8N
-https://workflowfree.com/wp-content/uploads/2025/04/Long_Live_Token_Threads_workflowfree.webp
+
